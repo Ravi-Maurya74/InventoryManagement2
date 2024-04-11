@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
 from inventory.models import Inventory
 from inventory.repostories.inventory_repository import InventoryRepository
 from inventory.serializers import InventorySerializer
@@ -32,6 +33,10 @@ def create_inventory(request):
     
 @api_view(['GET'])
 def get_all_inventories(request):
-    inventories = inventory_repository.get_all_inventories()
-    serialised_data = InventorySerializer(inventories,many=True).data
-    return Response(serialised_data,status=status.HTTP_200_OK)
+    paginator = PageNumberPagination()
+    paginator.page_size = 10 
+    
+    inventories = inventory_repository.get_all_inventories() 
+    result_page = paginator.paginate_queryset(inventories, request)
+    serializer = InventorySerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
