@@ -6,3 +6,6 @@ class InventoryRepository:
     
     def create_an_inventory(self,data):
         return Inventory.objects.create(**data)
+    
+    def get_all_inventories(self):
+        return Inventory.objects.all()

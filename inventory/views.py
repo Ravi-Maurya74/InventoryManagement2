@@ -29,3 +29,9 @@ def create_inventory(request):
         return Response(serialied_data,status=status.HTTP_201_CREATED)
     except Exception as e:
         return Response({'message': str(e)},status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET'])
+def get_all_inventories(request):
+    inventories = inventory_repository.get_all_inventories()
+    serialised_data = InventorySerializer(inventories,many=True).data
+    return Response(serialised_data,status=status.HTTP_200_OK)

@@ -9,3 +9,6 @@ class InventoryService:
     
     def create_an_inventory(self,data):
         return self.respository.create_an_inventory(data=data)
+    
+    def get_all_inventories(self):
+        return self.respository.get_all_inventories()
