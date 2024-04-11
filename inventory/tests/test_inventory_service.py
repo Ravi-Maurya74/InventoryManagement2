@@ -29,7 +29,7 @@ class TestInventoryService(TestCase):
     def testCreateAnInventory(self):
         data = {
             'primary_status': 'CREATED',
-            'primary_location': 'Warehouse B',
+            'primary_location': 'Location B',
             'vin': '98765432109876543',
             'make': 'Honda',
             'model': 'Accord',
