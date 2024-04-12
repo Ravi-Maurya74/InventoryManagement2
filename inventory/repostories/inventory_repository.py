@@ -9,3 +9,6 @@ class InventoryRepository:
     
     def get_all_inventories(self):
         return Inventory.objects.all()
+    
+    def update_inventory(self):
+        pass
