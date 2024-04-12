@@ -10,5 +10,14 @@ class InventoryRepository:
     def get_all_inventories(self):
         return Inventory.objects.all()
     
-    def update_inventory(self):
-        pass
+    def update_inventory(self,inventory_sku,updated_data):
+        try:
+            inventory = Inventory.objects.get(sku=inventory_sku)
+        except Inventory.DoesNotExist:
+            return None
+        
+        for key,value in updated_data.items():
+            setattr(inventory,key,value)
+
+        inventory.save()
+        return inventory

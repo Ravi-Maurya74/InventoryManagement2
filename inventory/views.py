@@ -40,3 +40,7 @@ class InventoryRetrieveUpdateDestroyView(APIView):
             return Response(serialized_data, status=status.HTTP_200_OK)
         except Inventory.DoesNotExist:
             return Response({'message': 'Inventory not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        
+        
+    
