@@ -12,3 +12,6 @@ class InventoryService:
     
     def get_all_inventories(self):
         return self.respository.get_all_inventories()
+    
+    def update_inventory(self,inventory_sku,updated_data):
+        return self.respository.update_inventory(inventory_sku=inventory_sku,updated_data=updated_data)
