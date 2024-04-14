@@ -21,3 +21,11 @@ class InventoryRepository:
 
         inventory.save()
         return inventory
+    
+    def delete_inventory(self,inventory_sku):
+        try:
+            inventory = Inventory.objects.get(sku=inventory_sku)
+            inventory.delete()
+            return True
+        except Inventory.DoesNotExist:
+            return False

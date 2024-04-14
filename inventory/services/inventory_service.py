@@ -15,3 +15,6 @@ class InventoryService:
     
     def update_inventory(self,inventory_sku,updated_data):
         return self.respository.update_inventory(inventory_sku=inventory_sku,updated_data=updated_data)
+    
+    def delete_inventory(self,inventory_sku):
+        return self.respository.delete_inventory(inventory_sku=inventory_sku)

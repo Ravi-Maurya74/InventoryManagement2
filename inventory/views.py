@@ -52,6 +52,18 @@ class InventoryRetrieveUpdateDestroyView(APIView):
             return Response(serialized_data, status=status.HTTP_200_OK)
         except Inventory.DoesNotExist:
             return Response({'message': 'Inventory not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+    def delete(self,request,sku):
+        if not sku:
+            return Response({'message': 'SKU parameter is required'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            deleted = inventory_service.delete_inventory(inventory_sku=sku)
+            if deleted:
+                return Response({'message': 'Inventory deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+            else:
+                return Response({'message': 'Inventory not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
         
     
